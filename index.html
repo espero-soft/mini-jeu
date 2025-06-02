@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Jeu de Quiz</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Écran de démarrage -->
+        <div id="start-screen" class="screen active">
+            <h1>🧠 Quiz de Culture Générale</h1>
+            <p>Testez vos connaissances avec 10 questions !</p>
+            <button id="start-btn" class="btn btn-primary">Commencer le Quiz</button>
+        </div>
+
+        <!-- Écran de jeu -->
+        <div id="game-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress" class="progress-fill"></div>
+                    </div>
+                    <span id="question-counter">Question 1/10</span>
+                </div>
+                <div id="timer" class="timer">⏱️ 30s</div>
+                <div id="score" class="score">Score: 0</div>
+            </div>
+
+            <div class="quiz-content">
+                <h2 id="question-text">Question apparaîtra ici</h2>
+                <div id="answers-container" class="answers-container">
+                    <!-- Les réponses seront générées dynamiquement -->
+                </div>
+            </div>
+
+            <div class="quiz-actions">
+                <button id="next-btn" class="btn btn-secondary" style="display: none;">Question Suivante</button>
+            </div>
+        </div>
+
+        <!-- Écran de résultats -->
+        <div id="result-screen" class="screen">
+            <h1>🎉 Quiz Terminé !</h1>
+            <div class="result-container">
+                <div id="final-score" class="final-score">Votre score: 0/10</div>
+                <div id="performance-message" class="performance-message"></div>
+                <div id="result-details" class="result-details"></div>
+            </div>
+            <div class="result-actions">
+                <button id="restart-btn" class="btn btn-primary">Recommencer</button>
+                <button id="review-btn" class="btn btn-secondary">Voir les Réponses</button>
+            </div>
+        </div>
+
+        <!-- Écran de révision -->
+        <div id="review-screen" class="screen">
+            <h2>📋 Révision des Réponses</h2>
+            <div id="review-content" class="review-content">
+                <!-- Le contenu de révision sera généré dynamiquement -->
+            </div>
+            <button id="back-to-results-btn" class="btn btn-secondary">Retour aux Résultats</button>
+        </div>
+    </div>
+
+    <script src="./assets/js/quiz.js"></script>
+</body>
+
+</html>
