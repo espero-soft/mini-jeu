@@ -65,6 +65,13 @@ body {
     color: #666;
 }
 
+.start-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
 /* Boutons */
 .btn {
     padding: 15px 30px;

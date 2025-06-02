@@ -35,7 +35,8 @@ Un jeu de quiz interactif développé en JavaScript vanilla pour tester vos conn
 
 1. Ouvrez le fichier `index.html` dans votre navigateur
 2. Cliquez sur "Commencer le Quiz" ou appuyez sur Entrée
-3. Lisez attentivement chaque question
+3. Pour consulter la documentation technique, cliquez sur "📚 Documentation Technique"
+4. Lisez attentivement chaque question
 
 ### 🎯 Répondre aux Questions
 
@@ -75,6 +76,7 @@ Un jeu de quiz interactif développé en JavaScript vanilla pour tester vos conn
 ```
 mini-jeu/
 ├── index.html          # Structure HTML principale
+├── documentation.html  # Documentation technique JavaScript
 ├── README.md          # Documentation (ce fichier)
 └── assets/            # Dossier des ressources
     ├── css/           # Fichiers de style
@@ -82,6 +84,20 @@ mini-jeu/
     └── js/            # Fichiers JavaScript
         └── quiz.js    # Logique JavaScript du jeu
 ```
+
+## 📚 Documentation Technique
+
+Une page de documentation technique complète est disponible dans `documentation.html`. Elle contient :
+
+- **Explication détaillée de toutes les fonctions JavaScript**
+- **Description des variables globales**
+- **Flux de données et logique du jeu**
+- **Exemples de code avec commentaires**
+- **Guide de personnalisation avancée**
+
+Vous pouvez accéder à cette documentation :
+- Depuis le jeu en cliquant sur "📚 Documentation Technique"
+- En ouvrant directement le fichier `documentation.html`
 
 ## 🎨 Personnalisation
 

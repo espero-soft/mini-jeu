@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Mini-Jeu de Quiz</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Styles spécifiques à la documentation */
+        .doc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .doc-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .doc-header h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .doc-header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .nav-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .doc-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .doc-section h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .function-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .function-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .function-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .function-type {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        .function-description {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .function-params {
+            background: #f0f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .function-params h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .param-item {
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .function-code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .function-usage {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2ed573;
+        }
+
+        .function-usage h4 {
+            color: #2ed573;
+            margin-bottom: 10px;
+        }
+
+        .toc {
+            background: #f0f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #555;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .toc a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .variable-card {
+            background: #fff8f0;
+            border-left: 4px solid #f39c12;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .variable-name {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .doc-container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .back-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-container">
+        <header class="doc-header">
+            <h1>📚 Documentation JavaScript</h1>
+            <p>Guide technique complet du Mini-Jeu de Quiz</p>
+        </header>
+
+        <nav class="nav-buttons">
+            <a href="#variables" class="nav-btn">🔧 Variables</a>
+            <a href="#init" class="nav-btn">🚀 Initialisation</a>
+            <a href="#game-flow" class="nav-btn">🎮 Flux de Jeu</a>
+            <a href="#ui" class="nav-btn">🎨 Interface</a>
+            <a href="#timer" class="nav-btn">⏱️ Timer</a>
+            <a href="#utils" class="nav-btn">🛠️ Utilitaires</a>
+        </nav>
+
+        <div class="toc">
+            <h3>📋 Table des Matières</h3>
+            <ul>
+                <li><a href="#variables">Variables Globales</a></li>
+                <li><a href="#init">Fonctions d'Initialisation</a></li>
+                <li><a href="#game-flow">Gestion du Flux de Jeu</a></li>
+                <li><a href="#ui">Gestion de l'Interface</a></li>
+                <li><a href="#timer">Gestion du Timer</a></li>
+                <li><a href="#utils">Fonctions Utilitaires</a></li>
+                <li><a href="#events">Gestionnaires d'Événements</a></li>
+            </ul>
+        </div>
+
+        <section id="variables" class="doc-section">
+            <h2>🔧 Variables Globales</h2>
+            
+            <div class="variable-card">
+                <div class="variable-name">const questions</div>
+                <div class="function-description">
+                    <strong>Type :</strong> Array<br>
+                    <strong>Description :</strong> Tableau contenant toutes les questions du quiz avec leurs réponses, la bonne réponse et les explications.
+                </div>
+            </div>
+
+            <div class="variable-card">
+                <div class="variable-name">let currentQuestionIndex</div>
+                <div class="function-description">
+                    <strong>Type :</strong> Number<br>
+                    <strong>Description :</strong> Index de la question actuelle (0-based).
+                </div>
+            </div>
+
+            <div class="variable-card">
+                <div class="variable-name">let score</div>
+                <div class="function-description">
+                    <strong>Type :</strong> Number<br>
+                    <strong>Description :</strong> Score actuel du joueur (nombre de bonnes réponses).
+                </div>
+            </div>
+
+            <div class="variable-card">
+                <div class="variable-name">let timeLeft</div>
+                <div class="function-description">
+                    <strong>Type :</strong> Number<br>
+                    <strong>Description :</strong> Temps restant pour la question actuelle (en secondes).
+                </div>
+            </div>
+
+            <div class="variable-card">
+                <div class="variable-name">let timer</div>
+                <div class="function-description">
+                    <strong>Type :</strong> Number<br>
+                    <strong>Description :</strong> ID de l'intervalle pour le timer (retour de setInterval).
+                </div>
+            </div>
+
+            <div class="variable-card">
+                <div class="variable-name">let userAnswers</div>
+                <div class="function-description">
+                    <strong>Type :</strong> Array<br>
+                    <strong>Description :</strong> Tableau stockant toutes les réponses de l'utilisateur avec métadonnées.
+                </div>
+            </div>
+
+            <div class="variable-card">
+                <div class="variable-name">let isAnswered</div>
+                <div class="function-description">
+                    <strong>Type :</strong> Boolean<br>
+                    <strong>Description :</strong> Indique si l'utilisateur a déjà répondu à la question actuelle.
+                </div>
+            </div>
+        </section>
+
+        <section id="init" class="doc-section">
+            <h2>🚀 Fonctions d'Initialisation</h2>
+            
+            <div class="function-card">
+                <div class="function-name">
+                    startGame()
+                    <span class="function-type">Principale</span>
+                </div>
+                <div class="function-description">
+                    Initialise et démarre une nouvelle partie du quiz. Cette fonction réinitialise toutes les variables du jeu et affiche la première question.
+                </div>
+                <div class="function-params">
+                    <h4>📥 Paramètres :</h4>
+                    <div class="param-item">Aucun paramètre</div>
+                </div>
+                <div class="function-code">
+function startGame() {
+    hideAllScreens();
+    gameScreen.classList.add('active');
+    
+    // Réinitialiser les variables
+    currentQuestionIndex = 0;
+    score = 0;
+    userAnswers = [];
+    gameStartTime = Date.now();
+    
+    // Mélanger les questions
+    shuffleArray(questions);
+    
+    showQuestion();
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée automatiquement lors du clic sur le bouton "Commencer le Quiz" ou avec la touche Entrée.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    hideAllScreens()
+                    <span class="function-type">Utilitaire</span>
+                </div>
+                <div class="function-description">
+                    Masque tous les écrans du jeu en retirant la classe 'active' de tous les éléments avec la classe 'screen'.
+                </div>
+                <div class="function-code">
+function hideAllScreens() {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Utilisée avant d'afficher un nouvel écran pour s'assurer qu'aucun autre écran n'est visible.
+                </div>
+            </div>
+        </section>
+
+        <section id="game-flow" class="doc-section">
+            <h2>🎮 Gestion du Flux de Jeu</h2>
+            
+            <div class="function-card">
+                <div class="function-name">
+                    showQuestion()
+                    <span class="function-type">Principale</span>
+                </div>
+                <div class="function-description">
+                    Affiche la question actuelle avec ses options de réponse. Met à jour l'interface utilisateur et démarre le timer.
+                </div>
+                <div class="function-code">
+function showQuestion() {
+    isAnswered = false;
+    const question = questions[currentQuestionIndex];
+    
+    // Mettre à jour l'interface
+    questionText.textContent = question.question;
+    questionCounter.textContent = `Question ${currentQuestionIndex + 1}/${questions.length}`;
+    updateProgress();
+    updateScore();
+    
+    // Générer les options de réponse
+    generateAnswerOptions(question);
+    
+    // Démarrer le timer
+    startTimer();
+    
+    // Cacher le bouton suivant
+    nextBtn.style.display = 'none';
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée au début du jeu et après chaque réponse pour afficher la question suivante.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    selectAnswer(selectedIndex, selectedElement)
+                    <span class="function-type">Événement</span>
+                </div>
+                <div class="function-description">
+                    Traite la sélection d'une réponse par l'utilisateur. Vérifie si la réponse est correcte, met à jour le score et affiche le feedback.
+                </div>
+                <div class="function-params">
+                    <h4>📥 Paramètres :</h4>
+                    <div class="param-item"><strong>selectedIndex</strong> (Number) : Index de la réponse sélectionnée</div>
+                    <div class="param-item"><strong>selectedElement</strong> (HTMLElement) : Élément DOM de la réponse sélectionnée</div>
+                </div>
+                <div class="function-code">
+function selectAnswer(selectedIndex, selectedElement) {
+    if (isAnswered) return;
+    
+    isAnswered = true;
+    clearInterval(timer);
+    
+    const question = questions[currentQuestionIndex];
+    const isCorrect = selectedIndex === question.correct;
+    
+    // Enregistrer la réponse
+    userAnswers.push({
+        questionIndex: currentQuestionIndex,
+        userAnswer: selectedIndex,
+        isCorrect: isCorrect,
+        timeSpent: 30 - timeLeft
+    });
+    
+    // Logique d'affichage des résultats...
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée automatiquement lors du clic sur une option de réponse ou via les raccourcis clavier.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    nextQuestion()
+                    <span class="function-type">Navigation</span>
+                </div>
+                <div class="function-description">
+                    Passe à la question suivante ou termine le jeu si toutes les questions ont été répondues.
+                </div>
+                <div class="function-code">
+function nextQuestion() {
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        endGame();
+    }
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée lors du clic sur "Question Suivante" ou avec la touche Entrée.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    endGame()
+                    <span class="function-type">Principale</span>
+                </div>
+                <div class="function-description">
+                    Termine le jeu, calcule les statistiques finales et affiche l'écran de résultats avec les performances du joueur.
+                </div>
+                <div class="function-code">
+function endGame() {
+    hideAllScreens();
+    resultScreen.classList.add('active');
+    
+    const gameEndTime = Date.now();
+    const totalTime = Math.round((gameEndTime - gameStartTime) / 1000);
+    
+    // Calculer les statistiques
+    const percentage = Math.round((score / questions.length) * 100);
+    
+    // Afficher les résultats...
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée automatiquement après la dernière question.
+                </div>
+            </div>
+        </section>
+
+        <section id="ui" class="doc-section">
+            <h2>🎨 Gestion de l'Interface</h2>
+            
+            <div class="function-card">
+                <div class="function-name">
+                    generateAnswerOptions(question)
+                    <span class="function-type">Interface</span>
+                </div>
+                <div class="function-description">
+                    Génère dynamiquement les options de réponse pour une question donnée avec les gestionnaires d'événements appropriés.
+                </div>
+                <div class="function-params">
+                    <h4>📥 Paramètres :</h4>
+                    <div class="param-item"><strong>question</strong> (Object) : Objet question contenant les réponses possibles</div>
+                </div>
+                <div class="function-code">
+function generateAnswerOptions(question) {
+    answersContainer.innerHTML = '';
+    
+    question.answers.forEach((answer, index) => {
+        const answerElement = document.createElement('div');
+        answerElement.className = 'answer-option';
+        answerElement.innerHTML = `
+            &lt;div class="answer-letter"&gt;${String.fromCharCode(65 + index)}&lt;/div&gt;
+            &lt;span&gt;${answer}&lt;/span&gt;
+        `;
+        
+        answerElement.addEventListener('click', () => selectAnswer(index, answerElement));
+        answersContainer.appendChild(answerElement);
+    });
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée par showQuestion() pour chaque nouvelle question.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    updateProgress()
+                    <span class="function-type">Interface</span>
+                </div>
+                <div class="function-description">
+                    Met à jour la barre de progression basée sur le nombre de questions répondues.
+                </div>
+                <div class="function-code">
+function updateProgress() {
+    const progress = ((currentQuestionIndex) / questions.length) * 100;
+    progressFill.style.width = `${progress}%`;
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée à chaque nouvelle question pour refléter l'avancement.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    updateScore()
+                    <span class="function-type">Interface</span>
+                </div>
+                <div class="function-description">
+                    Met à jour l'affichage du score actuel dans l'interface.
+                </div>
+                <div class="function-code">
+function updateScore() {
+    scoreDisplay.textContent = `Score: ${score}`;
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée après chaque bonne réponse et à l'affichage de chaque question.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    showFeedback(message, type)
+                    <span class="function-type">Interface</span>
+                </div>
+                <div class="function-description">
+                    Affiche un message de feedback temporaire avec une animation pour indiquer si la réponse est correcte ou incorrecte.
+                </div>
+                <div class="function-params">
+                    <h4>📥 Paramètres :</h4>
+                    <div class="param-item"><strong>message</strong> (String) : Message à afficher</div>
+                    <div class="param-item"><strong>type</strong> (String) : Type de feedback ('success' ou 'error')</div>
+                </div>
+                <div class="function-code">
+function showFeedback(message, type) {
+    const feedback = document.createElement('div');
+    feedback.className = `feedback ${type}`;
+    feedback.textContent = message;
+    feedback.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: ${type === 'success' ? '#2ed573' : '#ff4757'};
+        color: white;
+        padding: 20px 40px;
+        border-radius: 50px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        z-index: 1000;
+        animation: feedbackAnim 2s ease-in-out forwards;
+    `;
+    
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        feedback.remove();
+    }, 2000);
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée après chaque réponse pour donner un feedback visuel immédiat.
+                </div>
+            </div>
+        </section>
+
+        <section id="timer" class="doc-section">
+            <h2>⏱️ Gestion du Timer</h2>
+            
+            <div class="function-card">
+                <div class="function-name">
+                    startTimer()
+                    <span class="function-type">Timer</span>
+                </div>
+                <div class="function-description">
+                    Démarre le compte à rebours de 30 secondes pour la question actuelle. Met à jour l'affichage chaque seconde et déclenche timeUp() si le temps expire.
+                </div>
+                <div class="function-code">
+function startTimer() {
+    timeLeft = 30;
+    updateTimerDisplay();
+    
+    timer = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        if (timeLeft <= 10) {
+            timerDisplay.classList.add('warning');
+        }
+        
+        if (timeLeft === 0) {
+            clearInterval(timer);
+            timeUp();
+        }
+    }, 1000);
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée automatiquement à l'affichage de chaque nouvelle question.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    updateTimerDisplay()
+                    <span class="function-type">Interface</span>
+                </div>
+                <div class="function-description">
+                    Met à jour l'affichage du timer et ajoute une classe d'alerte visuelle quand le temps devient critique.
+                </div>
+                <div class="function-code">
+function updateTimerDisplay() {
+    timerDisplay.textContent = `⏱️ ${timeLeft}s`;
+    timerDisplay.classList.toggle('warning', timeLeft <= 10);
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée chaque seconde par startTimer() pour maintenir l'affichage à jour.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    timeUp()
+                    <span class="function-type">Événement</span>
+                </div>
+                <div class="function-description">
+                    Fonction appelée quand le temps de réponse expire. Marque la réponse comme incorrecte et affiche la bonne réponse.
+                </div>
+                <div class="function-code">
+function timeUp() {
+    if (isAnswered) return;
+    
+    isAnswered = true;
+    
+    // Enregistrer comme réponse incorrecte
+    userAnswers.push({
+        questionIndex: currentQuestionIndex,
+        userAnswer: -1, // -1 indique pas de réponse
+        isCorrect: false,
+        timeSpent: 30
+    });
+    
+    // Afficher la bonne réponse
+    const question = questions[currentQuestionIndex];
+    const allOptions = document.querySelectorAll('.answer-option');
+    
+    allOptions.forEach((option, index) => {
+        option.classList.add('disabled');
+        if (index === question.correct) {
+            option.classList.add('correct');
+        }
+    });
+    
+    showFeedback('Temps écoulé ! ⏰', 'error');
+    
+    setTimeout(() => {
+        nextBtn.style.display = 'block';
+    }, 1000);
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée automatiquement par startTimer() quand timeLeft atteint 0.
+                </div>
+            </div>
+        </section>
+
+        <section id="utils" class="doc-section">
+            <h2>🛠️ Fonctions Utilitaires</h2>
+            
+            <div class="function-card">
+                <div class="function-name">
+                    shuffleArray(array)
+                    <span class="function-type">Utilitaire</span>
+                </div>
+                <div class="function-description">
+                    Mélange aléatoirement les éléments d'un tableau en utilisant l'algorithme de Fisher-Yates. Utilisée pour randomiser l'ordre des questions.
+                </div>
+                <div class="function-params">
+                    <h4>📥 Paramètres :</h4>
+                    <div class="param-item"><strong>array</strong> (Array) : Tableau à mélanger (modifié sur place)</div>
+                </div>
+                <div class="function-code">
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée au début de chaque partie pour mélanger les questions et offrir une expérience différente.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    showReview()
+                    <span class="function-type">Interface</span>
+                </div>
+                <div class="function-description">
+                    Génère et affiche l'écran de révision avec toutes les questions, les réponses de l'utilisateur, les bonnes réponses et les explications.
+                </div>
+                <div class="function-code">
+function showReview() {
+    hideAllScreens();
+    reviewScreen.classList.add('active');
+    
+    reviewContent.innerHTML = '';
+    
+    questions.forEach((question, index) => {
+        const userAnswer = userAnswers[index];
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'review-question';
+        
+        const isCorrect = userAnswer.isCorrect;
+        const userAnswerText = userAnswer.userAnswer === -1 
+            ? 'Pas de réponse (temps écoulé)' 
+            : question.answers[userAnswer.userAnswer];
+        
+        // Génération du HTML de révision...
+        reviewContent.appendChild(questionDiv);
+    });
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée lors du clic sur "Voir les Réponses" pour permettre à l'utilisateur de réviser ses réponses.
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-name">
+                    restartGame()
+                    <span class="function-type">Navigation</span>
+                </div>
+                <div class="function-description">
+                    Remet le jeu à son état initial et retourne à l'écran de démarrage. Nettoie tous les timers actifs.
+                </div>
+                <div class="function-code">
+function restartGame() {
+    hideAllScreens();
+    startScreen.classList.add('active');
+    
+    // Réinitialiser le timer display
+    timerDisplay.classList.remove('warning');
+    clearInterval(timer);
+}
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Appelée lors du clic sur "Recommencer" pour permettre une nouvelle partie.
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="doc-section">
+            <h2>🎯 Gestionnaires d'Événements</h2>
+            
+            <div class="function-card">
+                <div class="function-name">
+                    Event Listeners
+                    <span class="function-type">Événements</span>
+                </div>
+                <div class="function-description">
+                    Le jeu utilise plusieurs gestionnaires d'événements pour l'interactivité :
+                </div>
+                <div class="function-code">
+// Boutons principaux
+startBtn.addEventListener('click', startGame);
+nextBtn.addEventListener('click', nextQuestion);
+restartBtn.addEventListener('click', restartGame);
+reviewBtn.addEventListener('click', showReview);
+backToResultsBtn.addEventListener('click', showResults);
+
+// Raccourcis clavier
+document.addEventListener('keydown', (e) => {
+    if (gameScreen.classList.contains('active') && !isAnswered) {
+        const key = e.key.toLowerCase();
+        if (['a', 'b', 'c', 'd'].includes(key)) {
+            const index = key.charCodeAt(0) - 97;
+            const options = document.querySelectorAll('.answer-option');
+            if (options[index]) {
+                selectAnswer(index, options[index]);
+            }
+        }
+    }
+    
+    if (e.key === 'Enter') {
+        if (startScreen.classList.contains('active')) {
+            startGame();
+        } else if (nextBtn.style.display !== 'none' && gameScreen.classList.contains('active')) {
+            nextQuestion();
+        }
+    }
+});
+                </div>
+                <div class="function-usage">
+                    <h4>💡 Utilisation :</h4>
+                    Les événements sont configurés au chargement de la page pour permettre l'interactivité complète du jeu.
+                </div>
+            </div>
+        </section>
+
+        <a href="index.html" class="back-btn">🏠 Retour au Jeu</a>
+    </div>
+
+    <script>
+        // Script pour la navigation fluide dans la documentation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = btn.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Mettre à jour les boutons actifs
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Scroll fluide vers la section
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Highlight du code lors du scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    document.querySelectorAll('.nav-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('href') === `#${sectionId}`) {
+                            btn.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.doc-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        console.log('📚 Page de documentation chargée avec succès !');
+    </script>
+</body>
+</html>
