@@ -75,16 +75,19 @@ Un jeu de quiz interactif développé en JavaScript vanilla pour tester vos conn
 ```
 mini-jeu/
 ├── index.html          # Structure HTML principale
-├── styles.css          # Styles CSS et animations
-├── quiz.js            # Logique JavaScript du jeu
-└── README.md          # Documentation (ce fichier)
+├── README.md          # Documentation (ce fichier)
+└── assets/            # Dossier des ressources
+    ├── css/           # Fichiers de style
+    │   └── styles.css # Styles CSS et animations
+    └── js/            # Fichiers JavaScript
+        └── quiz.js    # Logique JavaScript du jeu
 ```
 
 ## 🎨 Personnalisation
 
 ### 🔧 Ajouter des Questions
 
-Pour ajouter de nouvelles questions, modifiez le tableau `questions` dans `quiz.js` :
+Pour ajouter de nouvelles questions, modifiez le tableau `questions` dans `assets/js/quiz.js` :
 
 ```javascript
 {
@@ -101,7 +104,7 @@ Changez la variable `timeLeft` dans la fonction `startTimer()` pour ajuster le t
 
 ### 🎨 Personnaliser l'Apparence
 
-- Modifiez les couleurs dans les variables CSS au début de `styles.css`
+- Modifiez les couleurs dans les variables CSS au début de `assets/css/styles.css`
 - Ajustez les animations en modifiant les `@keyframes`
 - Changez les polices dans la propriété `font-family`
 
@@ -119,14 +122,16 @@ Changez la variable `timeLeft` dans la fonction `startTimer()` pour ajuster le t
 
 ### Le quiz ne se charge pas
 
-- Vérifiez que tous les fichiers sont dans le même dossier
+- Vérifiez que tous les fichiers sont dans la bonne structure de dossiers
 - Assurez-vous que JavaScript est activé dans votre navigateur
 - Ouvrez la console (F12) pour voir les erreurs éventuelles
+- Vérifiez que les chemins vers les fichiers CSS et JS sont corrects dans `index.html`
 
 ### L'affichage est cassé
 
-- Vérifiez que le fichier CSS est bien lié dans l'HTML
+- Vérifiez que le fichier CSS est bien lié dans l'HTML (`assets/css/styles.css`)
 - Actualisez la page (Ctrl+F5 ou Cmd+Shift+R)
+- Vérifiez la structure des dossiers `assets/css/` et `assets/js/`
 
 ### Le timer ne fonctionne pas
 
